@@ -2,7 +2,7 @@ syntax = "proto3";
 
 // service definition
 service RPCServicer {
-  // A simple RPC.
+  // defining RPC service.
   rpc MsgDelivery(Request) returns (Response) {}
 }
 

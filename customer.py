@@ -14,7 +14,8 @@ class Customer:
         self.events = events
         # pointer for the stub
         self.stub = None
-
+    
+    # function to create stub for customers
     def createStub(self):
         server_address = "localhost:50051"
         channel = grpc.insecure_channel(
@@ -29,12 +30,13 @@ class Customer:
         stub = example_pb2_grpc.RPCServicerStub(channel)
         self.stub = stub
 
-    # to send out the events to the Bank
+    # function to send out the events to the Bank branch
     def executeEvents(self):
         request = example_pb2.Request(id = self.id, events = self.events )
         response = self.stub.MsgDelivery(request)
         return response
 
+# function to create customer process and perform the respective tasks
 def _run_worker_query(customerInput) :
     customerProcess = Customer(customerInput['id'], customerInput['events'])
     customerProcess.createStub()

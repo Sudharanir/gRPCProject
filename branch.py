@@ -78,7 +78,7 @@ def Propagate_Withdraw(self, money) :
         if self.id != self.branches[x].id :
             self.branches[x].balance = self.branches[x].balance - money
 
-
+# starts the server for each branch on specified port
 def _run_server(bind_address, branch):
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=5),)
     example_pb2_grpc.add_RPCServicerServicer_to_server(branch, server)
@@ -107,16 +107,15 @@ def main():
     for x in range(len(branchProcessesList)) :
         branchProcessesList[x].branches = branchProcessesList
 
-    # start the server for each branch
-    workers = []
-    portList = []
-    basicPort = 50051
-
     # generate ports
+    basicPort = 50051
+    portList = []
     for x in range(len(branchProcessesList)) :
         port = basicPort + x
         portList.append(port)
 
+    # creates process for each branch and starts the server
+    workers = []
     for x in range(len(branchProcessesList)):
         bind_address = f"[::]:{portList[x]}"
         worker = multiprocessing.Process(target=_run_server, args=(bind_address, branchProcessesList[x]))
