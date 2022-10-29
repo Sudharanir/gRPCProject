@@ -14,19 +14,19 @@ Minimum system requirements for running the program in local machine:
 
 If necessary, upgrade your version of pip:
 
-python -m pip install --upgrade pip
+```python -m pip install --upgrade pip```
 
-Step1: Install gRPC : python -m pip install grpcio
+Step1: Install gRPC : ```python -m pip install grpcio```
 
-Step2: Install gRPC tools : python -m pip install grpcio-tools
+Step2: Install gRPC tools : ```python -m pip install grpcio-tools```
 
-Step3: Generate gRPC code : python -m grpc_tools.protoc -I./protos protos/example.proto --python_out=. --grpc_python_out=.
+Step3: Generate gRPC code : ```python -m grpc_tools.protoc -I./protos protos/example.proto --python_out=. --grpc_python_out=.```
 
 **Steps for starting the banking application software:**
 
-Step1: Run the server : python branch.python
+Step1: Run the server : ```python branch.py```
 
-Step2: Run the client : python customer.py
+Step2: Run the client : ```python customer.py```
 
 Note : Input data is provided in input.json file
 
